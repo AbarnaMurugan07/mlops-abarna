@@ -11,8 +11,7 @@ if [ ! -d /opt/ml-venv ]; then
 fi
 
 cd "$APP_DIR"
-
- /opt/ml-venv/bin/pip install --no-cache-dir -r requirements.txt
+/opt/ml-venv/bin/pip install --no-cache-dir -r requirements.txt
 /opt/ml-venv/bin/python train.py
 
 cat > /etc/systemd/system/ml-app.service <<'SERVICE'
@@ -22,7 +21,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/ubuntu/ml-app
-Environment=MODEL_VERSION=1.0
+Environment=MODEL_Version=1.0
 ExecStart=/opt/ml-venv/bin/gunicorn --bind 0.0.0.0:80 app:app
 Restart=always
 
